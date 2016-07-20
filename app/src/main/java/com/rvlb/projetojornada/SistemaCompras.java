@@ -4,12 +4,17 @@ import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.TextView;
 
-public class SistemaCompras extends AppCompatActivity {
+public class SistemaCompras extends AppCompatActivity implements View.OnClickListener {
 
     private CheckBox cbArroz, cbLeite, cbCarne, cbFeijao;
-    private AlertDialog.Builder resultDialog;
+    private TextView tvSubtotal;
+    private Button btComprar;
+
+    private int qnt[] = {0,0,0,0};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,19 +26,54 @@ public class SistemaCompras extends AppCompatActivity {
         this.cbCarne = (CheckBox) findViewById(R.id.cbCarne);
         this.cbFeijao = (CheckBox) findViewById(R.id.cbFeijao);
 
-        this.resultDialog = new AlertDialog.Builder(this);
-        this.resultDialog.setTitle("Aviso");
-        this.resultDialog.setNeutralButton("Ok", null);
+        this.cbArroz.setOnClickListener(this);
+        this.cbLeite.setOnClickListener(this);
+        this.cbCarne.setOnClickListener(this);
+        this.cbFeijao.setOnClickListener(this);
+
+        this.tvSubtotal = (TextView) findViewById(R.id.tvSubtotal);
+
+        this.btComprar = (Button) findViewById(R.id.btComprar);
+        this.btComprar.setOnClickListener(this);
     }
 
-    public void total(View v) {
-        double sum = 0;
-        if(cbArroz.isChecked()) sum += 2.69;
-        if(cbLeite.isChecked()) sum += 5.00;
-        if(cbCarne.isChecked()) sum += 9.70;
-        if(cbFeijao.isChecked()) sum += 2.30;
-        this.resultDialog.setMessage("Valor total: R$"+sum);
-        this.resultDialog.show();
-    }
 
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()) {
+            case R.id.cbArroz:
+                qnt[0]++;
+                cbArroz.setText("Arroz (R$ 2.69) - "+qnt[0]);
+                break;
+            case R.id.cbLeite:
+                qnt[1]++;
+                cbLeite.setText("Leite (R$ 5.00) - "+qnt[1]);
+                break;
+            case R.id.cbCarne:
+                qnt[2]++;
+                cbCarne.setText("Carne (R$ 9.70) - "+qnt[2]);
+                break;
+            case R.id.cbFeijao:
+                qnt[3]++;
+                cbFeijao.setText("Feijão (R$ 2.30) - "+qnt[3]);
+                break;
+            case R.id.btComprar:
+                double total = (2.69*qnt[0]) + (5*qnt[1]) + (9.7*qnt[2]) + (2.3*qnt[3]);
+                tvSubtotal.setText("Total: R$ " + total);
+                qnt[0] = qnt[1] = qnt[2] = qnt[3] = 0;
+
+                cbArroz.setChecked(false);
+                cbArroz.setText("Arroz (R$ 2.69) - " + qnt[0]);
+
+                cbLeite.setChecked(false);
+                cbLeite.setText("Leite (R$ 5.00) - " + qnt[1]);
+
+                cbCarne.setChecked(false);
+                cbCarne.setText("Carne (R$ 9.70) - " + qnt[2]);
+
+                cbFeijao.setChecked(false);
+                cbFeijao.setText("Feijão (R$ 2.30) - "+qnt[3]);
+                break;
+        }
+    }
 }

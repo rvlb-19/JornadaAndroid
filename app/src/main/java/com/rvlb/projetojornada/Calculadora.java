@@ -16,7 +16,7 @@ public class Calculadora extends AppCompatActivity implements View.OnClickListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_calculadora);
 
         this.etFirstNumber = (EditText) findViewById(R.id.etFirstNumber);
         this.etSecondNumber = (EditText) findViewById(R.id.etSecondNumber);
