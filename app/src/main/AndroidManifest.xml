@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ListaTelefonica">
+        <activity android:name=".ImageViewer">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,7 +18,8 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".Calculadora" />
         <activity android:name=".SistemaCompras" />
-        <activity android:name=".SalarioSpinner"></activity>
+        <activity android:name=".SalarioSpinner" />
+        <activity android:name=".ListaTelefonica"></activity>
     </application>
 
 </manifest>
