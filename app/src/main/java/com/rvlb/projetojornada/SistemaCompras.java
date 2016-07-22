@@ -1,6 +1,7 @@
 package com.rvlb.projetojornada;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,7 +13,7 @@ public class SistemaCompras extends AppCompatActivity implements View.OnClickLis
 
     private CheckBox cbArroz, cbLeite, cbCarne, cbFeijao;
     private TextView tvSubtotal;
-    private Button btComprar;
+    private Button btComprar, btVoltar;
 
     private int qnt[] = {0,0,0,0};
 
@@ -35,8 +36,11 @@ public class SistemaCompras extends AppCompatActivity implements View.OnClickLis
 
         this.btComprar = (Button) findViewById(R.id.btComprar);
         this.btComprar.setOnClickListener(this);
-    }
 
+        this.btVoltar = (Button) findViewById(R.id.btVoltar);
+        this.btVoltar.setText(getIntent().getStringExtra("nome"));
+        this.btVoltar.setOnClickListener(this);
+    }
 
     @Override
     public void onClick(View v) {
@@ -73,6 +77,9 @@ public class SistemaCompras extends AppCompatActivity implements View.OnClickLis
 
                 cbFeijao.setChecked(false);
                 cbFeijao.setText("Feijão (R$ 2.30) - "+qnt[3]);
+                break;
+            case R.id.btVoltar:
+                startActivity(new Intent(SistemaCompras.this,LoginActivity.class));
                 break;
         }
     }

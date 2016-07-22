@@ -42,4 +42,9 @@
         android:id="@+id/tvSubtotal"
         android:text="Total: R$ 0.00"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btVoltar" />
+
 </LinearLayout>

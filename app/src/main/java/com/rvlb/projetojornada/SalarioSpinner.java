@@ -2,6 +2,8 @@ package com.rvlb.projetojornada;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -72,7 +74,12 @@ public class SalarioSpinner extends Activity {
         });
 
         alertDialog = new AlertDialog.Builder(this);
-        alertDialog.setNeutralButton("Ok", null);
+        alertDialog.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                startActivity(new Intent(SalarioSpinner.this,LoginActivity.class));
+            }
+        });
 
         etSalario = (EditText) findViewById(R.id.etSalario);
 
